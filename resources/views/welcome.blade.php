@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+				<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}" >
 
         <!-- Styles -->
         <style>
@@ -20,7 +21,9 @@
             }
         </style>
     </head>
-    <body class="antialiased">
-
+    <body>
+			<div class="ContactForm">
+				<h1 class="ContactForm-pageTitle">Contact Form Demo</h1>
+			<div>
     </body>
 </html>
