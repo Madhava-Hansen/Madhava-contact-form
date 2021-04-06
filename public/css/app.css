@@ -1,3 +1,113 @@
+.ContactForm {
+  background-color: white;
+  margin-top: 50px;
+}
+.ContactForm-iconInstructions {
+  background-color: #f8f8f8;
+  height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ContactForm-playIcon, .ContactForm-circleIcon {
+  width: 300px;
+  border-radius: 10px;
+  border: 1px solid grey;
+  background-color: white;
+  height: 100px;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ContactForm-formWrapper {
+  padding: 30px;
+  max-width: 1000px;
+  background-color: white;
+  margin: 0 auto;
+}
 .ContactForm-pageTitle {
   font-size: 30px;
+  color: #1c88c6;
+  margin-left: 40px;
+  width: 100%;
+  max-width: 1000px;
+}
+.ContactForm-inputsWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ContactForm-inputPair {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.ContactForm-name, .ContactForm-email, .ContactForm-phone, .ContactForm-reason {
+  width: 100%;
+  height: 50px;
+  border: 1px solid lightgrey;
+  margin: 24px 0;
+  border-radius: 5px;
+}
+.ContactForm-message {
+  width: 100%;
+  height: 200px;
+  border: 1px solid grey;
+}
+.ContactForm-submitButton {
+  background-color: #1c88c6;
+  padding: 12px;
+  color: white;
+  width: 177px;
+  font-size: 18px;
+  font-weight: 100;
+  letter-spacing: 2px;
+  border-radius: 3px;
+  margin: 40px 0;
+}
+.ContactForm-warning {
+  width: 60%;
+  color: grey;
+  font-size: 11px;
+}
+.ContactForm-requiredFields {
+  color: tomato;
+}
+.ContactForm-footer {
+  background-color: #f8f8f8;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 1.7;
+}
+.ContactForm-thankYou {
+  width: 200px;
+  height: auto;
+  margin: 30px;
+}
+@media screen and (min-width: 900px) {
+  .ContactForm-inputPair {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .ContactForm-name, .ContactForm-email, .ContactForm-phone, .ContactForm-reason {
+    width: 50%;
+  }
+  .ContactForm-name, .ContactForm-phone {
+    margin-right: 20px;
+  }
+  .ContactForm-submitAndWarningWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
