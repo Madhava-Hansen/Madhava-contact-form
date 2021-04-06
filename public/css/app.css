@@ -2,21 +2,7 @@
   background-color: white;
   margin-top: 50px;
 }
-.ContactForm-iconInstructions {
-  background-color: #f8f8f8;
-  height: 200px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.ContactForm-playIcon, .ContactForm-circleIcon {
-  width: 300px;
-  border-radius: 10px;
-  border: 1px solid grey;
-  background-color: white;
-  height: 100px;
-  margin: 20px;
+.ContactForm-iconInstructions, .ContactForm-playIcon, .ContactForm-circleIcon, .ContactForm-inputsWrapper, .ContactForm-inputPair {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,40 +10,59 @@
 .ContactForm-formWrapper {
   padding: 30px;
   max-width: 1000px;
-  background-color: white;
   margin: 0 auto;
 }
 .ContactForm-pageTitle {
-  font-size: 30px;
+  font-size: 36px;
   color: #1c88c6;
-  margin-left: 40px;
+  margin: 0 auto;
   width: 100%;
   max-width: 1000px;
+  padding: 30px;
+  font-weight: normal;
 }
 .ContactForm-inputsWrapper {
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 .ContactForm-inputPair {
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100%;
+}
+.ContactForm-inputWrapper {
+  width: 100%;
+}
+.ContactForm-asterix {
+  color: red;
 }
 .ContactForm-name, .ContactForm-email, .ContactForm-phone, .ContactForm-reason {
   width: 100%;
   height: 50px;
   border: 1px solid lightgrey;
-  margin: 24px 0;
   border-radius: 5px;
+  padding: 0 12px;
+  margin-top: 5px;
+  font-size: 18px;
+}
+.ContactForm-reason {
+  margin-bottom: 24px;
+}
+.ContactForm-nameError, .ContactForm-emailError, .ContactForm-phoneError {
+  background-color: #be3600;
+  color: white;
+  visibility: hidden;
+  padding-left: 8px;
+}
+.ContactForm-messageTitleText {
+  margin-top: 24px;
+  width: 100%;
 }
 .ContactForm-message {
   width: 100%;
-  height: 200px;
-  border: 1px solid grey;
+  height: 116px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  padding: 12px;
+  margin: 5px 0 10px 0;
 }
 .ContactForm-submitButton {
   background-color: #1c88c6;
@@ -70,44 +75,85 @@
   border-radius: 3px;
   margin: 40px 0;
 }
+.ContactForm-submitButton:hover {
+  cursor: pointer;
+}
+.ContactForm-submitAndWarningWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
 .ContactForm-warning {
-  width: 60%;
+  width: 100%;
   color: grey;
   font-size: 11px;
+  line-height: 1.8;
+  text-align: center;
 }
 .ContactForm-requiredFields {
-  color: tomato;
+  color: #be3600;
 }
 .ContactForm-footer {
   background-color: #f8f8f8;
-  padding: 40px;
+  line-height: 1.7;
+}
+.ContactForm-footerContentWrapper {
+  max-width: 1000px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  line-height: 1.7;
+  padding: 30px;
+}
+.ContactForm-loremIpsum {
+  font-size: 16px;
 }
 .ContactForm-thankYou {
-  width: 200px;
-  height: auto;
-  margin: 30px;
+  display: none;
+  border-radius: 10px;
+}
+.ContactForm-inputErrorMode {
+  border: 1px solid #be3600;
+  background-color: #fff4f0;
 }
 @media screen and (min-width: 900px) {
   .ContactForm-inputPair {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
   }
-  .ContactForm-name, .ContactForm-email, .ContactForm-phone, .ContactForm-reason {
-    width: 50%;
+  .ContactForm-inputWrapper {
+    width: 48%;
   }
   .ContactForm-name, .ContactForm-phone {
     margin-right: 20px;
   }
   .ContactForm-submitAndWarningWrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: row;
   }
+  .ContactForm-warning {
+    width: 60%;
+    text-align: left;
+  }
+  .ContactForm-thankYou {
+    width: 200px;
+    height: auto;
+    margin-left: 30px;
+    display: block;
+  }
+}
+
+::-moz-placeholder {
+  color: lightgrey;
+}
+
+:-ms-input-placeholder {
+  color: lightgrey;
+}
+
+::placeholder {
+  color: lightgrey;
 }

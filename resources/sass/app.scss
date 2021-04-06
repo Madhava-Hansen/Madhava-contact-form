@@ -2,26 +2,17 @@ $blue: #1c88c6;
 $inputBorderBlue: #7bcaf6;
 $inputBorderLightBlue: #e6f6ff;
 $backgroundGrey: #f8f8f8;
+$errorRed: #be3600;
+$backgroundErrorRed: #fff4f0;
 
 .ContactForm {
     background-color: white;
     margin-top: 50px;
-    &-iconInstructions {
-        background-color: $backgroundGrey;
-        height: 200px;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+    &-iconInstructions,
     &-playIcon,
-    &-circleIcon {
-        width: 300px;
-        border-radius: 10px;
-        border: 1px solid grey;
-        background-color: white;
-        height: 100px;
-        margin: 20px;
+    &-circleIcon,
+    &-inputsWrapper,
+    &-inputPair {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -29,28 +20,29 @@ $backgroundGrey: #f8f8f8;
     &-formWrapper {
         padding: 30px;
         max-width: 1000px;
-        background-color: white;
         margin: 0 auto;
     }
     &-pageTitle {
-        font-size: 30px;
+        font-size: 36px;
         color: $blue;
-        margin-left: 40px;
+        margin: 0 auto;
         width: 100%;
         max-width: 1000px;
+        padding: 30px;
+        font-weight: normal;
     }
     &-inputsWrapper {
-        display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
     }
     &-inputPair {
-        display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
         width: 100%;
+    }
+    &-inputWrapper {
+        width: 100%;
+    }
+    &-asterix {
+        color: red;
     }
     &-name,
     &-email,
@@ -59,13 +51,33 @@ $backgroundGrey: #f8f8f8;
         width: 100%;
         height: 50px;
         border: 1px solid lightgrey;
-        margin: 24px 0;
         border-radius: 5px;
+        padding: 0 12px;
+        margin-top: 5px;
+        font-size: 18px;
+    }
+    &-reason {
+        margin-bottom: 24px;
+    }
+    &-nameError,
+    &-emailError,
+    &-phoneError {
+        background-color: $errorRed;
+        color: white;
+        visibility: hidden;
+        padding-left: 8px;
+    }
+    &-messageTitleText {
+        margin-top: 24px;
+        width: 100%;
     }
     &-message {
         width: 100%;
-        height: 200px;
-        border: 1px solid grey;
+        height: 116px;
+        border: 1px solid lightgrey;
+        border-radius: 3px;
+        padding: 12px;
+        margin: 5px 0 10px 0;
     }
     &-submitButton {
         background-color: $blue;
@@ -77,51 +89,80 @@ $backgroundGrey: #f8f8f8;
         letter-spacing: 2px;
         border-radius: 3px;
         margin: 40px 0;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    &-submitAndWarningWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
     }
     &-warning {
-        width: 60%;
+        width: 100%;
         color: grey;
         font-size: 11px;
+        line-height: 1.8;
+        text-align: center;
     }
     &-requiredFields {
-        color: tomato;
+        color: $errorRed;
     }
     &-footer {
         background-color: $backgroundGrey;
-        padding: 40px;
+        line-height: 1.7;
+    }
+    &-footerContentWrapper {
+        max-width: 1000px;
+        margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        line-height: 1.7;
+        padding: 30px;
+    }
+    &-loremIpsum {
+        font-size: 16px;
     }
     &-thankYou {
-        width: 200px;
-        height: auto;
-        margin: 30px;
+        display: none;
+        border-radius: 10px;
     }
-
+    &-inputErrorMode {
+        border: 1px solid $errorRed;
+        background-color: $backgroundErrorRed;
+    }
     @media screen and (min-width: 900px) {
         &-inputPair {
             display: flex;
             flex-direction: row;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             width: 100%;
         }
-        &-name,
-        &-email,
-        &-phone,
-        &-reason {
-            width: 50%;
+        &-inputWrapper {
+            width: 48%;
         }
         &-name,
         &-phone {
             margin-right: 20px;
         }
         &-submitAndWarningWrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: row;
+        }
+        &-warning {
+            width: 60%;
+            text-align: left;
+        }
+        &-thankYou {
+            width: 200px;
+            height: auto;
+            margin-left: 30px;
+            display: block;
         }
     }
+}
+
+::placeholder {
+    color: lightgrey;
 }
