@@ -1842,13 +1842,16 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-window.addEventListener('DOMContentLoaded', function (event) {
+window.addEventListener('DOMContentLoaded', function () {
   var state = {
     name: '',
     phone: '',
     email: '',
     reason: '',
-    message: ''
+    message: '',
+    hasEmailError: false,
+    hasNameError: false,
+    hasPhoneError: false
   };
   var emailValidationRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   var nameInput = document.querySelector('.ContactForm-name');
@@ -1856,6 +1859,10 @@ window.addEventListener('DOMContentLoaded', function (event) {
   var phoneInput = document.querySelector('.ContactForm-phone');
   var reasonInput = document.querySelector('.ContactForm-reason');
   var messageInput = document.querySelector('.ContactForm-message');
+  var submitButton = document.querySelector('.ContactForm-submitButton');
+  var emailError = document.querySelector('.ContactForm-emailError');
+  var phoneError = document.querySelector('.ContactForm-phoneError');
+  var nameError = document.querySelector('.ContactForm-nameError');
 
   var validateEmail = function validateEmail() {
     return emailValidationRegex.test(state.email.toLowerCase());
@@ -1863,25 +1870,59 @@ window.addEventListener('DOMContentLoaded', function (event) {
 
   var handleSubmit = function handleSubmit() {
     if (!validateEmail()) {
-      var errorMessage = document.querySelector('.ContactForm-emailError');
+      emailError.style.visibility = 'visible';
+      emailInput.classList.add('ContactForm-inputErrorMode');
+      state.hasEmailError = true;
+    }
+
+    if (!state.name) {
+      nameError.style.visibility = 'visible';
+      nameInput.classList.add('ContactForm-inputErrorMode');
+      state.hasNameError = true;
+    }
+
+    if (!state.phone) {
+      phoneError.style.visibility = 'visible';
+      phoneInput.classList.add('ContactForm-inputErrorMode');
+      state.hasPhoneError = true;
     }
   };
 
+  submitButton.addEventListener('click', function (e) {
+    handleSubmit();
+  });
   nameInput.addEventListener('change', function (e) {
     state.name = e.target.value;
+
+    if (state.hasNameError && state.name) {
+      nameError.style.visibility = 'hidden';
+      nameInput.classList.remove('ContactForm-inputErrorMode');
+      state.nameError = false;
+    }
   });
   emailInput.addEventListener('change', function (e) {
     state.email = e.target.value;
+
+    if (state.hasEmailError && validateEmail()) {
+      emailError.style.visibility = 'hidden';
+      emailInput.classList.remove('ContactForm-inputErrorMode');
+      state.emailError = false;
+    }
   });
   phoneInput.addEventListener('change', function (e) {
     state.phone = e.target.value;
+
+    if (state.hasPhoneError && state.phone) {
+      phoneError.style.visibility = 'hidden';
+      phoneInput.classList.remove('ContactForm-inputErrorMode');
+      state.phoneError = false;
+    }
   });
   reasonInput.addEventListener('change', function (e) {
     state.reason = e.target.value;
   });
   messageInput.addEventListener('change', function (e) {
     state.message = e.target.value;
-    console.table(state);
   });
 });
 
