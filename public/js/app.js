@@ -1842,6 +1842,49 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+window.addEventListener('DOMContentLoaded', function (event) {
+  var state = {
+    name: '',
+    phone: '',
+    email: '',
+    reason: '',
+    message: ''
+  };
+  var emailValidationRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  var nameInput = document.querySelector('.ContactForm-name');
+  var emailInput = document.querySelector('.ContactForm-email');
+  var phoneInput = document.querySelector('.ContactForm-phone');
+  var reasonInput = document.querySelector('.ContactForm-reason');
+  var messageInput = document.querySelector('.ContactForm-message');
+
+  var validateEmail = function validateEmail() {
+    return emailValidationRegex.test(state.email.toLowerCase());
+  };
+
+  var handleSubmit = function handleSubmit() {
+    if (!validateEmail()) {
+      var errorMessage = document.querySelector('.ContactForm-emailError');
+    }
+  };
+
+  nameInput.addEventListener('change', function (e) {
+    state.name = e.target.value;
+  });
+  emailInput.addEventListener('change', function (e) {
+    state.email = e.target.value;
+  });
+  phoneInput.addEventListener('change', function (e) {
+    state.phone = e.target.value;
+  });
+  reasonInput.addEventListener('change', function (e) {
+    state.reason = e.target.value;
+  });
+  messageInput.addEventListener('change', function (e) {
+    state.message = e.target.value;
+    console.table(state);
+  });
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
