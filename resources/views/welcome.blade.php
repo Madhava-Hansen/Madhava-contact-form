@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Contact Form Demo</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -24,6 +24,55 @@
     <body>
 			<div class="ContactForm">
 				<h1 class="ContactForm-pageTitle">Contact Form Demo</h1>
+				<div class="ContactForm-iconInstructions">
+					<div class="ContactForm-playIcon">
+						<p>Text + Right Aligned Image In Two Lines</p>
+					</div>
+					<div class="ContactForm-circleIcon">
+						<p>Text + Right Aligned Image</p>
+					</div>
+				</div>
+				<div class="ContactForm-formWrapper">
+					<div class="ContactForm-inputsWrapper">
+							<div class="ContactForm-inputPair">
+								<input placeholder="Enter your name" class="ContactForm-name"></input>
+								<div className="ContactForm-email">
+									<input placeholder="Enter your email" class="ContactForm"></input>
+									<div class="ContactForm-emailError">Please enter a valid email</div>
+								</div>
+							</div>
+							<div class="ContactForm-inputPair">
+								<input placeholder="Enter your phone number" class="ContactForm-phone"></input>
+								<select name="Subject of Inquiry" class="ContactForm-reason">
+									<option value="Reason1">Reason 1</option>
+									<option value="Reason2">Reason 2</option>
+									<option value="Reason3">Reason 3</option>
+								</select>
+							</div>
+						<textarea class="ContactForm-message"></textarea>
+						</div>
+					<div class="ContactForm-submitAndWarningWrapper">
+						<button class="ContactForm-submitButton" type="submit">SUBMIT</button>
+						<p class="ContactForm-warning"><span class="ContactForm-requiredFields">*Required Fields</span> Please be aware that we connot ensure that communications sent over the internet are secure.
+							This includes correspondence send through this form or by email. If you are uncomfortable with such risks, you may contact us 
+							by phone instead of using this form. 
+						</p>
+					</div>
+				</div>
+				<div class="ContactForm-footer">
+					<div class="ContactForm-loremIpsum">
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
+						dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+						book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+						<br/>
+						<br/>
+						Lorem Ipsum has been the industry's standard
+						dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+						book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+					</div>
+					<img class="ContactForm-thankYou" src="https://res.cloudinary.com/aptquirks/image/upload/v1617658081/thank_you_wf8rsr.jpg" />
+				</div>
 			<div>
     </body>
+		<script src="../js/app.js"></script>
 </html>
