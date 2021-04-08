@@ -20,7 +20,7 @@ Contact Model
 
 3. [Model](https://github.com/Madhava-Hansen/Madhava-contact-form/blob/main/app/Models/Contact.php)
 
-Vanilla JavaScript for receiving inputs and submitting POST request to Laravel
+Vanilla JavaScript for receiving inputs and submitting POST request to PHP
 
 4. [App.js](https://github.com/Madhava-Hansen/Madhava-contact-form/blob/main/resources/js/app.js)
 

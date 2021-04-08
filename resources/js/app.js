@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   const emailValidationRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const phoneMuberValidationRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  const phoneNumberValidationRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
   const nameInput = document.querySelector('.ContactForm-name');
   const emailInput = document.querySelector('.ContactForm-email');
@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
     emailValidationRegex.test(state.email.toLowerCase());
 
   const validatePhone = () => 
-    phoneMuberValidationRegex.test(state.phone);
+    phoneNumberValidationRegex.test(state.phone);
 
   const createContact = () => {
     return $.ajax({

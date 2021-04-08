@@ -4,7 +4,7 @@ $inputBorderLightBlue: #e6f6ff;
 $backgroundGrey: #f8f8f8;
 $errorRed: #be3600;
 $backgroundErrorRed: #fff4f0;
-$sucessMessage--green: #4bb543;
+$sucessMessageGreen: #4bb543;
 
 .ContactForm {
     background-color: white;
@@ -38,7 +38,7 @@ $sucessMessage--green: #4bb543;
         padding: 40px;
         color: black;
         background-color: white;
-        border: 5px solid $sucessMessage--green;
+        border: 5px solid $sucessMessageGreen;
         border-radius: 10px;
         font-size: 30px;
         margin: 0 20px;
