@@ -93,34 +93,33 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   submitButton.addEventListener('click', e => {
-    e.preventDefault();
     handleSubmit();
   })
 
   nameInput.addEventListener('change', e => {
     state.name = e.target.value;
     if (state.hasNameError && state.name) {
+      state.hasNameError = false;
       nameError.style.visibility = 'hidden';
       nameInput.classList.remove('ContactForm-inputErrorMode');
-      state.nameError = false;
     }
   });
 
   emailInput.addEventListener('change', e => {
     state.email = e.target.value;
     if (state.hasEmailError && validateEmail()) {
+      state.hasEmailError = false;
       emailError.style.visibility = 'hidden';
       emailInput.classList.remove('ContactForm-inputErrorMode');
-      state.emailError = false;
     }
   });
 
   phoneInput.addEventListener('change', e => {
     state.phone = e.target.value;
     if (state.hasPhoneError && state.phone) {
+      state.hasPhoneError = false;
       phoneError.style.visibility = 'hidden';
       phoneInput.classList.remove('ContactForm-inputErrorMode');
-      state.phoneError = false;
     }
   });
 
