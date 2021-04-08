@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactUsFormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/contact', function () {
+    return view('contact');
 });
+
+Route::post('/contact', [ContactUsFormController::class, 'ContactUsForm']);
+
+// Route::get('/', function () {
+//     return redirect('/contact');
+// });
+
