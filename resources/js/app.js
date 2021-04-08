@@ -14,6 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   const emailValidationRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const phoneMuberValidationRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;;
 
   const nameInput = document.querySelector('.ContactForm-name');
   const emailInput = document.querySelector('.ContactForm-email');
@@ -28,25 +29,71 @@ window.addEventListener('DOMContentLoaded', () => {
   const validateEmail = () =>
     emailValidationRegex.test(state.email.toLowerCase());
 
+  const validatePhone = () => 
+    phoneMuberValidationRegex.test(state.phone);
+
+  const createContact = () => {
+    return $.ajax({
+      method: "POST",
+      url: `/contact`,
+      data: {
+        name: state.name,
+        phone: state.phone,
+        email: state.email,
+        reason: state.reason,
+        message: state.message
+      }
+    });
+  }
+
   const handleSubmit = () => {
     if (!validateEmail()) {
+      triggerErrors('email');
+    }
+    if (!state.name) {
+      triggerErrors('name');
+    }
+    if (!validatePhone()) {
+      triggerErrors('phone');
+    }
+    if (state.hasEmailError || state.hasNameError || state.hasPhoneError) {
+      return;
+    } else {
+      createContact().then((response) => {
+        const form = document.querySelector('.ContactForm-formWrapper');
+        form.style.opacity = 0;
+        setTimeout(() => {
+          const successMessage = document.querySelector('.ContactForm-successMessage');
+          successMessage.style.zIndex = 1;
+          successMessage.style.opacity = 1;
+        }, 500);
+      }).catch(error => {
+        const errors = error.responseJSON.errors;
+        for (let err in errors) {
+          triggerErrors(err);
+        }
+      })
+    }
+  }
+
+  const triggerErrors = name => {
+    if (name === 'phone') {
+      phoneError.style.visibility = 'visible';
+      phoneInput.classList.add('ContactForm-inputErrorMode');
+      state.hasPhoneError = true;
+    } else if (name === 'email') {
       emailError.style.visibility = 'visible';
       emailInput.classList.add('ContactForm-inputErrorMode');
       state.hasEmailError = true;
-    }
-    if (!state.name) {
+    } else if (name === 'name') {
       nameError.style.visibility = 'visible';
       nameInput.classList.add('ContactForm-inputErrorMode');
       state.hasNameError = true;
     }
-    if (!state.phone) {
-      phoneError.style.visibility = 'visible';
-      phoneInput.classList.add('ContactForm-inputErrorMode');
-      state.hasPhoneError = true;
-    }
   }
 
   submitButton.addEventListener('click', e => {
+    e.preventDefault();
     handleSubmit();
   })
 
