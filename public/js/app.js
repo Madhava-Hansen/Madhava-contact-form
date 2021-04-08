@@ -1854,6 +1854,8 @@ window.addEventListener('DOMContentLoaded', function () {
     hasPhoneError: false
   };
   var emailValidationRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  var phoneMuberValidationRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  ;
   var nameInput = document.querySelector('.ContactForm-name');
   var emailInput = document.querySelector('.ContactForm-email');
   var phoneInput = document.querySelector('.ContactForm-phone');
@@ -1868,23 +1870,71 @@ window.addEventListener('DOMContentLoaded', function () {
     return emailValidationRegex.test(state.email.toLowerCase());
   };
 
+  var validatePhone = function validatePhone() {
+    return phoneMuberValidationRegex.test(state.phone);
+  };
+
+  var createContact = function createContact() {
+    return $.ajax({
+      method: "POST",
+      url: "/contact",
+      data: {
+        name: state.name,
+        phone: state.phone,
+        email: state.email,
+        reason: state.reason,
+        message: state.message
+      }
+    });
+  };
+
   var handleSubmit = function handleSubmit() {
     if (!validateEmail()) {
-      emailError.style.visibility = 'visible';
-      emailInput.classList.add('ContactForm-inputErrorMode');
-      state.hasEmailError = true;
+      triggerErrors('email');
     }
 
     if (!state.name) {
-      nameError.style.visibility = 'visible';
-      nameInput.classList.add('ContactForm-inputErrorMode');
-      state.hasNameError = true;
+      triggerErrors('name');
     }
 
-    if (!state.phone) {
+    if (!validatePhone()) {
+      triggerErrors('phone');
+    }
+
+    if (state.hasEmailError || state.hasNameError || state.hasPhoneError) {
+      return;
+    } else {
+      createContact().then(function (response) {
+        var form = document.querySelector('.ContactForm-formWrapper');
+        form.style.opacity = 0;
+        setTimeout(function () {
+          var successMessage = document.querySelector('.ContactForm-successMessage');
+          successMessage.style.zIndex = 1;
+          successMessage.style.opacity = 1;
+        }, 500);
+      })["catch"](function (error) {
+        var errors = error.responseJSON.errors;
+
+        for (var err in errors) {
+          triggerErrors(err);
+        }
+      });
+    }
+  };
+
+  var triggerErrors = function triggerErrors(name) {
+    if (name === 'phone') {
       phoneError.style.visibility = 'visible';
       phoneInput.classList.add('ContactForm-inputErrorMode');
       state.hasPhoneError = true;
+    } else if (name === 'email') {
+      emailError.style.visibility = 'visible';
+      emailInput.classList.add('ContactForm-inputErrorMode');
+      state.hasEmailError = true;
+    } else if (name === 'name') {
+      nameError.style.visibility = 'visible';
+      nameInput.classList.add('ContactForm-inputErrorMode');
+      state.hasNameError = true;
     }
   };
 
@@ -1895,27 +1945,27 @@ window.addEventListener('DOMContentLoaded', function () {
     state.name = e.target.value;
 
     if (state.hasNameError && state.name) {
+      state.hasNameError = false;
       nameError.style.visibility = 'hidden';
       nameInput.classList.remove('ContactForm-inputErrorMode');
-      state.nameError = false;
     }
   });
   emailInput.addEventListener('change', function (e) {
     state.email = e.target.value;
 
     if (state.hasEmailError && validateEmail()) {
+      state.hasEmailError = false;
       emailError.style.visibility = 'hidden';
       emailInput.classList.remove('ContactForm-inputErrorMode');
-      state.emailError = false;
     }
   });
   phoneInput.addEventListener('change', function (e) {
     state.phone = e.target.value;
 
     if (state.hasPhoneError && state.phone) {
+      state.hasPhoneError = false;
       phoneError.style.visibility = 'hidden';
       phoneInput.classList.remove('ContactForm-inputErrorMode');
-      state.phoneError = false;
     }
   });
   reasonInput.addEventListener('change', function (e) {

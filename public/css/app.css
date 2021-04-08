@@ -2,15 +2,56 @@
   background-color: white;
   margin-top: 50px;
 }
-.ContactForm-iconInstructions, .ContactForm-playIcon, .ContactForm-circleIcon, .ContactForm-inputsWrapper, .ContactForm-inputPair {
+.ContactForm-iconInstructions, .ContactForm-playIcon, .ContactForm-circleIcon, .ContactForm-inputsWrapper, .ContactForm-inputPair, .ContactForm-belowTitleSection, .ContactForm-imageAndTextPlaceholder {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.ContactForm-successMessage {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+  opacity: 0;
+  transition: z-index 0.5s;
+  transition: opacity 0.5s;
+}
+.ContactForm-seccessMessageText {
+  padding: 40px;
+  color: black;
+  background-color: white;
+  border: 5px solid #4bb543;
+  border-radius: 10px;
+  font-size: 30px;
+  margin: 0 20px;
+  text-align: center;
+}
+.ContactForm-belowTitleSection {
+  width: 100%;
+  min-height: 200px;
+  background-color: #f8f8f8;
+  flex-direction: column;
+  padding: 20px;
+}
+.ContactForm-imageAndTextPlaceholder {
+  width: 300px;
+  height: 100px;
+  border-radius: 10px;
+  margin: 12px;
+  border: 2px solid lightgrey;
+  background-color: white;
+  padding: 42px;
 }
 .ContactForm-formWrapper {
   padding: 30px;
   max-width: 1000px;
   margin: 0 auto;
+  transition: opacity 0.5s;
 }
 .ContactForm-pageTitle {
   font-size: 36px;
@@ -43,8 +84,13 @@
   margin-top: 5px;
   font-size: 18px;
 }
+.ContactForm-name:focus, .ContactForm-email:focus, .ContactForm-phone:focus, .ContactForm-reason:focus {
+  border: 3px solid #7bcaf6;
+  outline: 4px solid #e6f6ff;
+}
 .ContactForm-reason {
   margin-bottom: 24px;
+  color: lightgrey;
 }
 .ContactForm-nameError, .ContactForm-emailError, .ContactForm-phoneError {
   background-color: #be3600;
@@ -63,6 +109,10 @@
   border-radius: 3px;
   padding: 12px;
   margin: 5px 0 10px 0;
+}
+.ContactForm-message:focus {
+  border: 3px solid #7bcaf6;
+  outline: 4px solid #e6f6ff;
 }
 .ContactForm-submitButton {
   background-color: #1c88c6;
@@ -116,6 +166,11 @@
 .ContactForm-inputErrorMode {
   border: 1px solid #be3600;
   background-color: #fff4f0;
+}
+@media screen and (min-width: 700px) {
+  .ContactForm-belowTitleSection {
+    flex-direction: row;
+  }
 }
 @media screen and (min-width: 900px) {
   .ContactForm-inputPair {

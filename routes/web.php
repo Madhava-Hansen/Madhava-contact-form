@@ -20,7 +20,3 @@ Route::get('/contact', function () {
 
 Route::post('/contact', [ContactUsFormController::class, 'ContactUsForm']);
 
-// Route::get('/', function () {
-//     return redirect('/contact');
-// });
-
