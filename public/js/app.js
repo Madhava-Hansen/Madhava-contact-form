@@ -1855,7 +1855,6 @@ window.addEventListener('DOMContentLoaded', function () {
   };
   var emailValidationRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   var phoneMuberValidationRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-  ;
   var nameInput = document.querySelector('.ContactForm-name');
   var emailInput = document.querySelector('.ContactForm-email');
   var phoneInput = document.querySelector('.ContactForm-phone');
