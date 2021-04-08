@@ -4,6 +4,7 @@ $inputBorderLightBlue: #e6f6ff;
 $backgroundGrey: #f8f8f8;
 $errorRed: #be3600;
 $backgroundErrorRed: #fff4f0;
+$sucessMessage--green: #4bb543;
 
 .ContactForm {
     background-color: white;
@@ -12,15 +13,58 @@ $backgroundErrorRed: #fff4f0;
     &-playIcon,
     &-circleIcon,
     &-inputsWrapper,
-    &-inputPair {
+    &-inputPair,
+    &-belowTitleSection,
+    &-imageAndTextPlaceholder {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    &-successMessage {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: -1;
+        opacity: 0;
+        transition: z-index 0.5s;
+        transition: opacity 0.5s;
+    }
+    &-seccessMessageText {
+        padding: 40px;
+        color: black;
+        background-color: white;
+        border: 5px solid $sucessMessage--green;
+        border-radius: 10px;
+        font-size: 30px;
+        margin: 0 20px;
+        text-align: center;
+    }
+    &-belowTitleSection {
+        width: 100%;
+        min-height: 200px;
+        background-color: $backgroundGrey;
+        flex-direction: column;
+        padding: 20px;
+    }
+    &-imageAndTextPlaceholder {
+        width: 300px;
+        height: 100px;
+        border-radius: 10px;
+        margin: 12px;
+        border: 2px solid lightgrey;
+        background-color: white;
+        padding: 42px;
     }
     &-formWrapper {
         padding: 30px;
         max-width: 1000px;
         margin: 0 auto;
+        transition: opacity 0.5s;
     }
     &-pageTitle {
         font-size: 36px;
@@ -55,9 +99,14 @@ $backgroundErrorRed: #fff4f0;
         padding: 0 12px;
         margin-top: 5px;
         font-size: 18px;
+        &:focus {
+            border: 3px solid $inputBorderBlue;
+            outline: 4px solid $inputBorderLightBlue;
+        }
     }
     &-reason {
         margin-bottom: 24px;
+        color: lightgrey;
     }
     &-nameError,
     &-emailError,
@@ -78,6 +127,10 @@ $backgroundErrorRed: #fff4f0;
         border-radius: 3px;
         padding: 12px;
         margin: 5px 0 10px 0;
+        &:focus {
+            border: 3px solid $inputBorderBlue;
+            outline: 4px solid $inputBorderLightBlue;
+        }
     }
     &-submitButton {
         background-color: $blue;
@@ -131,6 +184,11 @@ $backgroundErrorRed: #fff4f0;
     &-inputErrorMode {
         border: 1px solid $errorRed;
         background-color: $backgroundErrorRed;
+    }
+    @media screen and (min-width: 700px) {
+        &-belowTitleSection {
+            flex-direction: row;
+        }
     }
     @media screen and (min-width: 900px) {
         &-inputPair {
