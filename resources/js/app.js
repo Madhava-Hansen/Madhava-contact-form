@@ -47,15 +47,15 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   const handleSubmit = () => {
-    if (!validateEmail()) {
-      triggerErrors('email');
-    }
-    if (!state.name) {
-      triggerErrors('name');
-    }
-    if (!validatePhone()) {
-      triggerErrors('phone');
-    }
+    // if (!validateEmail()) {
+    //   triggerErrors('email');
+    // }
+    // if (!state.name) {
+    //   triggerErrors('name');
+    // }
+    // if (!validatePhone()) {
+    //   triggerErrors('phone');
+    // }
     if (state.hasEmailError || state.hasNameError || state.hasPhoneError) {
       return;
     } else {
@@ -68,6 +68,7 @@ window.addEventListener('DOMContentLoaded', () => {
           successMessage.style.opacity = 1;
         }, 500);
       }).catch(error => {
+        // Open Issue: handle exceptions from any errors that occure when saving to the db.
         const errors = error.responseJSON.errors;
         for (let err in errors) {
           triggerErrors(err);

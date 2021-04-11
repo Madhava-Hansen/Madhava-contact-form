@@ -1854,7 +1854,7 @@ window.addEventListener('DOMContentLoaded', function () {
     hasPhoneError: false
   };
   var emailValidationRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  var phoneMuberValidationRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  var phoneNumberValidationRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
   var nameInput = document.querySelector('.ContactForm-name');
   var emailInput = document.querySelector('.ContactForm-email');
   var phoneInput = document.querySelector('.ContactForm-phone');
@@ -1870,7 +1870,7 @@ window.addEventListener('DOMContentLoaded', function () {
   };
 
   var validatePhone = function validatePhone() {
-    return phoneMuberValidationRegex.test(state.phone);
+    return phoneNumberValidationRegex.test(state.phone);
   };
 
   var createContact = function createContact() {
@@ -1888,18 +1888,15 @@ window.addEventListener('DOMContentLoaded', function () {
   };
 
   var handleSubmit = function handleSubmit() {
-    if (!validateEmail()) {
-      triggerErrors('email');
-    }
-
-    if (!state.name) {
-      triggerErrors('name');
-    }
-
-    if (!validatePhone()) {
-      triggerErrors('phone');
-    }
-
+    // if (!validateEmail()) {
+    //   triggerErrors('email');
+    // }
+    // if (!state.name) {
+    //   triggerErrors('name');
+    // }
+    // if (!validatePhone()) {
+    //   triggerErrors('phone');
+    // }
     if (state.hasEmailError || state.hasNameError || state.hasPhoneError) {
       return;
     } else {
@@ -1912,6 +1909,7 @@ window.addEventListener('DOMContentLoaded', function () {
           successMessage.style.opacity = 1;
         }, 500);
       })["catch"](function (error) {
+        // Open Issue: handle exceptions from any errors that occure when saving to the db.
         var errors = error.responseJSON.errors;
 
         for (var err in errors) {
