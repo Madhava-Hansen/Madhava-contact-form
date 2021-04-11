@@ -1888,15 +1888,18 @@ window.addEventListener('DOMContentLoaded', function () {
   };
 
   var handleSubmit = function handleSubmit() {
-    // if (!validateEmail()) {
-    //   triggerErrors('email');
-    // }
-    // if (!state.name) {
-    //   triggerErrors('name');
-    // }
-    // if (!validatePhone()) {
-    //   triggerErrors('phone');
-    // }
+    if (!validateEmail()) {
+      triggerErrors('email');
+    }
+
+    if (!state.name) {
+      triggerErrors('name');
+    }
+
+    if (!validatePhone()) {
+      triggerErrors('phone');
+    }
+
     if (state.hasEmailError || state.hasNameError || state.hasPhoneError) {
       return;
     } else {
